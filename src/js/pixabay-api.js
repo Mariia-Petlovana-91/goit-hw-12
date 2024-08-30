@@ -21,7 +21,7 @@ export class PixabayApi {
 			return data.hits
 		})
 		.catch(err => {
-			error();
+			return error(err);
 		  });
 
 	}

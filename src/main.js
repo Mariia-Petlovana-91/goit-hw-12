@@ -1,21 +1,9 @@
 import './css/main.scss';
 import iziToast from "izitoast";
-import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
+import axios from 'axios';
 import { refs, createItem, loader } from './js/render-functions';
 import { PixabayApi, } from './js/pixabay-api';
-
-function error(){
-	iziToast.show({
-	    backgroundColor: 'red',
-	    messageColor: 'white',
-	    message: "Sorry, there are no images matching your search query. Please try again!",
-	    position: 'topRight',
-	    
-	});
-  }
-
 
 let lightbox = new SimpleLightbox('.gallery a', {
 	navText:  ['<','>'],
@@ -33,9 +21,6 @@ function onSearch(e){
 	
 	const searchValue = refs.form.elements.find.value;
 
-	 if (searchValue === ''){
-            alert('Please enter the name of the element you are looking for in the search field.');
-	 }
       refs.galleryContainer.innerHTML='';
 
 	loader(refs.loaderEl);
@@ -53,13 +38,16 @@ function onSearch(e){
 		lightbox.refresh();
 		refs.form.reset();
            
-		if (hits.length === 0) {
-		    error();
-		    return;
+		if (hits.length === 0 || searchValue === '') {
+			iziToast.error({
+				message: "Sorry, there are no images matching your search query. Please try again!",
+				position: 'topRight',
+			  });
+			  return;
 		}
 	  })
 	.catch(err => {
-            error();
+            error(err);
             console.error('Search operation failed:', err);
         });
 	
