@@ -13,7 +13,7 @@ export default defineConfig(({ command }) => {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: '', // Можеш додати тут змінні або міксіни, якщо потрібно
+          additionalData: '', // Тут можна додати спільні SASS-змінні або міксіни, якщо потрібно
         },
       },
       postcss: {
