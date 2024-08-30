@@ -15,18 +15,16 @@ let lightbox = new SimpleLightbox('.gallery a', {
 const pixabayApi = new PixabayApi();
 
 refs.form.addEventListener('submit', onSearch);
+refs.btnSee.addEventListener('click', onLoadeMore);
 
 function onSearch(e){
 	e.preventDefault();
-	
-	const searchValue = refs.form.elements.find.value;
 
       refs.galleryContainer.innerHTML='';
 
 	loader(refs.loaderEl);
       
 	pixabayApi.findValue = e.currentTarget.elements.find.value;
-
 	pixabayApi.fetchImade()
 
 	.then(hits => {
@@ -35,10 +33,16 @@ function onSearch(e){
 
 		refs.galleryContainer.insertAdjacentHTML('beforeend', createItem(hits));
 
+		if (refs.galleryContainer.children.length > 0) {
+			refs.btnSee.classList.remove('visually-hidden');
+		}
+
 		lightbox.refresh();
 		refs.form.reset();
            
-		if (hits.length === 0 || searchValue === '') {
+		if (hits.length === 0 || pixabayApi.findValue === '') {
+			refs.btnSee.classList.add('visually-hidden');
+
 			iziToast.error({
 				message: "Sorry, there are no images matching your search query. Please try again!",
 				position: 'topRight',
@@ -47,10 +51,20 @@ function onSearch(e){
 		}
 	  })
 	.catch(err => {
-            error(err);
-            console.error('Search operation failed:', err);
+            console.log(err);
         });
 	
 }
-    
+
+function onLoadeMore() {
+	pixabayApi.fetchImade()
+	    .then(hits => {
+		  refs.galleryContainer.insertAdjacentHTML('beforeend', createItem(hits));
+		  lightbox.refresh();
+
+	    })
+	    .catch(err => {
+		  console.log(err);
+	    });
+  }
 

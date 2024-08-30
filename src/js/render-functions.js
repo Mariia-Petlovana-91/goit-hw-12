@@ -2,6 +2,7 @@ export const refs = {
 	form: document.querySelector('.form'),
 	galleryContainer: document.querySelector('.gallery'),
 	loaderEl : document.querySelector('.loader'),
+	btnSee : document.querySelector('.btn--see'),
 }
 
 export function createItem(array) {
