@@ -1,0 +1,68 @@
+.form{
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 371px;
+}
+
+.form__search{
+	margin-bottom: 8px;
+	outline: none;
+	border: solid 1px #000000a6;
+	color: #000000a6;
+	border-radius: 8px;
+	box-sizing: border-box;
+	height: 40px;
+	font-family: Montserrat;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0.04em;
+      text-align: left;
+	padding-left: 16px;
+
+	&::placeholder{
+		color: #808080;
+	}
+
+	&:hover, &:focus{
+		border: solid 1px #000000;
+	}
+
+	  /* Прибирає хрестик в Chrome, Edge, Safari */
+      &::-webkit-search-decoration,
+	&::-webkit-search-cancel-button,
+	&::-webkit-search-results-button,
+	&::-webkit-search-results-decoration {
+		display: none;
+	}
+	    
+	  /* Прибирає хрестик в Firefox */
+	&::-moz-search-clear-button {
+		display: none;
+	}
+	    
+	  /* Прибирає хрестик в Internet Explorer */
+	&::-ms-clear {
+		display: none;
+		width: 0;
+		height: 0;
+	}
+}
+
+.form__btn{
+	min-width: 75px;
+	height: 40px;
+	padding: 8px 16px 8px 16px;
+	border-radius: 8px;
+	background-color: #4E75FF;
+	color: white;
+	outline: none;
+	border: none;
+
+	&:hover, &:focus{
+		background-color: #6C8CFF;
+		;
+	}
+}
+
+    

@@ -10,6 +10,20 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '', // Можеш додати тут змінні або міксіни, якщо потрібно
+        },
+      },
+      postcss: {
+        plugins: [
+          SortCss({
+            sort: 'mobile-first',
+          }),
+        ],
+      },
+    },
     build: {
       sourcemap: true,
       rollupOptions: {
@@ -40,9 +54,6 @@ export default defineConfig(({ command }) => {
     plugins: [
       injectHTML(),
       FullReload(['./src/**/**.html']),
-      SortCss({
-        sort: 'mobile-first',
-      }),
     ],
   };
 });
