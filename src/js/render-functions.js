@@ -3,6 +3,7 @@ export const refs = {
 	galleryContainer: document.querySelector('.gallery'),
 	loaderEl : document.querySelector('.loader'),
 	btnSee : document.querySelector('.btn--see'),
+	firstImage: document.querySelector('.gallery-item'),
 }
 
 export function createItem(array) {
@@ -39,3 +40,15 @@ export function createItem(array) {
 export function loader(el){
 	return el.classList.toggle('visually-hidden');
 }
+
+export function scroll() {
+	if (refs.firstImage) {
+	    const imageHeight = refs.firstImage.getBoundingClientRect().height;
+	    
+	    window.scrollBy({
+		  top: imageHeight * 2,
+		  left: 0,
+		  behavior: "smooth",
+	    });
+	}
+  }
