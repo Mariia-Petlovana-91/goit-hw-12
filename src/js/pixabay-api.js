@@ -38,7 +38,7 @@ export class PixabayApi {
     }
 
     resetLength() {
-        this.length += 0;
+        this.length = 0;
     }
 
     get findValue() {
